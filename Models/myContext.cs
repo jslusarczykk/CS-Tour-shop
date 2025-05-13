@@ -13,6 +13,13 @@ namespace C_SHOP.Models
         public DbSet<Cart> tbl_cart { get; set; }
         public DbSet<Feedback> tbl_feedback { get; set; }
         public DbSet<Faqs> tbl_FAQs { get; set; }
-        public DbSet<Deleteit> tbl_delete { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .HasOne(p=>p.Category)
+                .WithMany(c=>c.Product)
+                .HasForeignKey(p => p.cat_id);
+        }
     }
 }
