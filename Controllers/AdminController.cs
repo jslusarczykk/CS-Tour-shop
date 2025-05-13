@@ -86,13 +86,21 @@ namespace C_SHOP.Controllers
             return View(_context.tbl_customer.Find(id));
         }
         [HttpPost]
-        public IActionResult updateCustomer(Customer customer,IFormFile customer_image)
+        public IActionResult updateCustomer(Customer customer, IFormFile customer_image)
         {
+            // 1) If they picked a new file, save it and update the property
+            if (customer_image != null && customer_image.Length > 0)
+            {
+                var fileName = Path.GetFileName(customer_image.FileName);
+                var savePath = Path.Combine(_env.WebRootPath, "customer_images", fileName);
+                using var fs = new FileStream(savePath, FileMode.Create);
+                customer_image.CopyTo(fs);
+                customer.customer_image = fileName;
+            }
+            // 2) otherwise leave customer.customer_image as it was (you must preserve it!)
+            //    e.g. by including a hidden field in your form:
+            //    <input type="hidden" name="customer_image" value="@Model.customer_image" />
 
-            string ImagePath = Path.Combine(_env.WebRootPath, "customer_images", customer_image.FileName);
-            FileStream fs = new FileStream(ImagePath, FileMode.Create);
-            customer_image.CopyTo(fs);
-            customer.customer_image = customer_image.FileName;
             _context.tbl_customer.Update(customer);
             _context.SaveChanges();
             return RedirectToAction("fetchCustomer");
