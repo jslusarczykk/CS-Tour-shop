@@ -4,7 +4,7 @@
 </div>
 <div class="row">
     <div class="col-mdl-12">
-        <a href="@Url.Action("addCategory","Admin")" class="btn btn-primary">Add New Product</a>
+        <a href="@Url.Action("addProduct","Admin")" class="btn btn-primary">Add New Product</a>
         <table class="table table-bordered table-striped text-center mt-3">
             <thead>
                 <tr>
@@ -20,7 +20,7 @@
                     <tr>
                         <td>@prod.product_name</td>
                         <td>@prod.product_price</td>
-                        <td>@prod.product_image</td>
+                        <td><img src="@("~/product_images/"+prod.product_image)" asp-append-version="true" height="40px" width="40px"/></td>
                         <td>
                             <a href="@Url.Action("productDetails","Admin",new{id=@prod.product_id})" class="btn btn-primary">Details</a>
                             <a href="@Url.Action("updateProduct","Admin",new{id=@prod.product_id})" class="btn btn-warning">Update</a>
