@@ -3,6 +3,6 @@
     <option hidden>Select Any Category</option>
     @foreach (var cat in Model)
     {
-        <option value="@cat.category_id">@cat.category_name</option>
+        <option value="@cat.category_id" selected="@cat.category_id==ViewBag.selectedCategoryId">@cat.category_name</option>
     }
 </select>

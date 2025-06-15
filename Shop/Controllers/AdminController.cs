@@ -1,5 +1,6 @@
 ﻿using C_SHOP.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace C_SHOP.Controllers
 {
@@ -176,6 +177,46 @@ namespace C_SHOP.Controllers
             _context.SaveChanges();
             return RedirectToAction("fetchProduct");
         }
-
+        public IActionResult productDetails(int id)
+        {
+            return View(_context.tbl_product.Include(p=>p.Category).FirstOrDefault(p=>p.product_id==id));
+        }
+        public IActionResult deletePermissionProduct(int id)
+        {
+            return View(_context.tbl_product.FirstOrDefault(p => p.product_id == id));
+        }
+        public IActionResult deleteProduct(int id)
+        {
+            var product = _context.tbl_product.Find(id);
+            _context.tbl_product.Remove(product);
+            _context.SaveChanges();
+            return RedirectToAction("fetchProduct");
+        }
+        public IActionResult updateProduct(int id)
+        {
+            List<Category> categories = _context.tbl_category.ToList();
+            ViewData["category"] = categories;
+            var product = _context.tbl_product.Find(id);
+            ViewBag.selectedCategoryId = product.cat_id;
+            return View(product);
+        }
+        [HttpPost]
+        public IActionResult updateproduct(Product prod)
+        {
+            _context.tbl_product.Update(prod);
+            _context.SaveChanges();
+            return RedirectToAction("FetchProduct");
+        }
+        [HttpPost]
+        public IActionResult ChangeProductImage(IFormFile product_image, Product product)
+        {
+            string ImagePath = Path.Combine(_env.WebRootPath, "product_images", product_image.FileName);
+            FileStream fs = new FileStream(ImagePath, FileMode.Create);
+            product_image.CopyTo(fs);
+            product.product_image = product_image.FileName;
+            _context.tbl_product.Update(product);
+            _context.SaveChanges();
+            return RedirectToAction("fetchProduct");
+        }
     }
 }
