@@ -101,15 +101,12 @@ namespace C_SHOP.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("customer_id"));
 
                     b.Property<string>("customer_address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_city")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_email")
@@ -117,11 +114,9 @@ namespace C_SHOP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_gender")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_name")
@@ -133,7 +128,6 @@ namespace C_SHOP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("customer_id");

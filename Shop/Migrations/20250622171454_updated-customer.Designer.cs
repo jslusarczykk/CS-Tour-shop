@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace C_SHOP.Migrations
 {
     [DbContext(typeof(myContext))]
-    [Migration("20250503131912_deletethisone")]
-    partial class deletethisone
+    [Migration("20250622171454_updated-customer")]
+    partial class updatedcustomer
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,15 +104,12 @@ namespace C_SHOP.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("customer_id"));
 
                     b.Property<string>("customer_address")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_city")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_country")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_email")
@@ -120,11 +117,9 @@ namespace C_SHOP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_gender")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_name")
@@ -136,41 +131,11 @@ namespace C_SHOP.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("customer_phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("customer_id");
 
                     b.ToTable("tbl_customer");
-                });
-
-            modelBuilder.Entity("C_SHOP.Models.Deleteit", b =>
-                {
-                    b.Property<int>("admin_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("admin_id"));
-
-                    b.Property<string>("admin_email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("admin_image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("admin_name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("admin_password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("admin_id");
-
-                    b.ToTable("tbl_delete");
                 });
 
             modelBuilder.Entity("C_SHOP.Models.Faqs", b =>
@@ -244,7 +209,25 @@ namespace C_SHOP.Migrations
 
                     b.HasKey("product_id");
 
+                    b.HasIndex("cat_id");
+
                     b.ToTable("tbl_product");
+                });
+
+            modelBuilder.Entity("C_SHOP.Models.Product", b =>
+                {
+                    b.HasOne("C_SHOP.Models.Category", "Category")
+                        .WithMany("Product")
+                        .HasForeignKey("cat_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("C_SHOP.Models.Category", b =>
+                {
+                    b.Navigation("Product");
                 });
 #pragma warning restore 612, 618
         }

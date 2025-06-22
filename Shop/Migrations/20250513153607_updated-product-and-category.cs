@@ -10,8 +10,6 @@ namespace C_SHOP.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "tbl_delete");
 
             migrationBuilder.CreateIndex(
                 name: "IX_tbl_product_cat_id",
