@@ -127,8 +127,8 @@
             </div><!-- End .heading-left -->
 
             <div class="heading-right">
-                <!-- !-- End .title             <a href="Url.Action("fetchAllProducts", "Customer")" class="title-link"> -->
-                View more products <i class="icon-long-arrow-right"></i>
+                <a href="@Url.Action("fetchAllProducts","Customer")" class="title-link">
+                    View more products <i class="icon-long-arrow-right"></i>
                 </a>
             </div><!-- End .heading-right -->
         </div><!-- End .heading -->
@@ -159,7 +159,7 @@
                             }
                         }'>
             <!-- Start .product -->
-            <!--      Html.Partial("fetchProducts", ViewData["product"]) -->
+            @Html.Partial("fetchProducts", ViewData["product"])
             <!-- End .product -->
         </div><!-- End .owl-carousel -->
 
