@@ -87,5 +87,18 @@ namespace C_SHOP.Controllers
             _context.SaveChanges();
             return RedirectToAction("customerProfile");
         }
+        public IActionResult feedback() {
+            List<Category> category = _context.tbl_category.ToList();
+            ViewData["category"] = category;
+            return View();
+        }
+        [HttpPost]
+        public IActionResult feedback(Feedback feedback)
+        {
+            TempData["message"] = "Feedback Submitted!";
+            _context.tbl_feedback.Add(feedback);
+            _context.SaveChanges();
+            return RedirectToAction("feedback");    
+        }
     }
 }

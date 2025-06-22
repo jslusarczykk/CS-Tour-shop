@@ -218,5 +218,20 @@ namespace C_SHOP.Controllers
             _context.SaveChanges();
             return RedirectToAction("fetchProduct");
         }
+        public IActionResult fetchFeedback()
+        {
+            return View(_context.tbl_feedback.ToList());
+        }
+        public IActionResult deletePermissionFeedback(int id)
+        {
+            return View(_context.tbl_feedback.FirstOrDefault(f => f.feedback_id == id));
+        }
+        public IActionResult deleteFeedback(int id)
+        {
+            var feedback = _context.tbl_feedback.Find(id);
+            _context.tbl_feedback.Remove(feedback);
+            _context.SaveChanges();
+            return RedirectToAction("fetchFeedback");
+        }
     }
 }
