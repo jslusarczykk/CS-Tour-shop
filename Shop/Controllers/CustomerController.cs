@@ -6,10 +6,12 @@ namespace C_SHOP.Controllers
     public class CustomerController : Controller
     {
         private myContext _context;
+        private IWebHostEnvironment _env;
 
-        public CustomerController(myContext context)
+        public CustomerController(myContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public IActionResult Index()
         {
@@ -33,8 +35,7 @@ namespace C_SHOP.Controllers
             }
             else
             {
-                // Login failed, show error message
-                ViewBag.ErrorMessage = "Invalid email or password.";
+                ViewBag.Message = "Invalid email or password.";
                 return View();
             }
         }
@@ -68,6 +69,23 @@ namespace C_SHOP.Controllers
                 var row = _context.tbl_customer.Where(c=>c.customer_id==int.Parse(customerId)).ToList();
                 return View(row);
             }                
+        }
+        [HttpPost]
+        public IActionResult updateCustomerProfile(Customer customer)
+        {
+            _context.tbl_customer.Update(customer);
+            _context.SaveChanges();
+            return RedirectToAction("customerProfile");
+        }
+        public IActionResult changeProfileImage(Customer customer, IFormFile customer_image)
+        {
+            string ImagePath = Path.Combine(_env.WebRootPath, "customer_images", customer_image.FileName);
+            FileStream fs = new FileStream(ImagePath, FileMode.Create);
+            customer_image.CopyTo(fs);
+            customer.customer_image = customer_image.FileName;
+            _context.tbl_customer.Update(customer);
+            _context.SaveChanges();
+            return RedirectToAction("customerProfile");
         }
     }
 }
