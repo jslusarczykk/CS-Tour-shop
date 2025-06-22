@@ -15,6 +15,7 @@ namespace C_SHOP.Controllers
         {
             List<Category> category = _context.tbl_category.ToList();
             ViewData["category"] = category;
+            ViewBag.checkSession = HttpContext.Session.GetString("customerSession");
             return View();
         }
         public IActionResult customerLogin()
@@ -47,6 +48,26 @@ namespace C_SHOP.Controllers
             _context.tbl_customer.Add(customer);
             _context.SaveChanges();
             return RedirectToAction("customerLogin");
+        }
+        public IActionResult customerLogout()
+        {
+            HttpContext.Session.Remove("customerSession");
+            return RedirectToAction("index");
+        }
+        public IActionResult customerProfile()
+        {
+            if(string.IsNullOrEmpty(HttpContext.Session.GetString("customerSession")))
+            {
+                return RedirectToAction("customerLogin");
+            }
+            else
+            {
+                List<Category> category = _context.tbl_category.ToList();
+                ViewData["category"] = category;
+                var customerId = HttpContext.Session.GetString("customerSession");
+                var row = _context.tbl_customer.Where(c=>c.customer_id==int.Parse(customerId)).ToList();
+                return View(row);
+            }                
         }
     }
 }
