@@ -233,5 +233,34 @@ namespace C_SHOP.Controllers
             _context.SaveChanges();
             return RedirectToAction("fetchFeedback");
         }
+        public IActionResult fetchCart()
+        {
+            var cart = _context.tbl_cart.Include(c => c.products).Include(c => c.customers).ToList();
+            return View(cart);
+        }
+        public IActionResult deletePermissionCart(int id)
+        {
+            return View(_context.tbl_cart.FirstOrDefault(c => c.cart_id == id));
+        }
+        public IActionResult deleteCart(int id)
+        {
+            var cart = _context.tbl_cart.Find(id);
+            _context.tbl_cart.Remove(cart);
+            _context.SaveChanges();
+            return RedirectToAction("fetchCart");
+        }
+        public IActionResult updateCart(int id)
+        {
+            var cart = _context.tbl_cart.Find(id);
+            return View(cart);
+        }
+        [HttpPost]
+        public IActionResult updateCart(int cart_status, Cart cart)
+        {
+            cart.cart_status = cart_status;
+            _context.tbl_cart.Update(cart);
+            _context.SaveChanges();
+            return RedirectToAction("FetchCart");
+        }
     }
 }
