@@ -18,7 +18,9 @@ namespace C_SHOP.Controllers
             string admin_session = HttpContext.Session.GetString("admin_session");
             if (admin_session != null)
             {
-                return View();
+                var adminId = HttpContext.Session.GetString("admin_session");
+                var admin = _context.tbl_admin.FirstOrDefault(a => a.admin_id == int.Parse(adminId));
+                return View(admin);
             }
             else
             {
@@ -261,6 +263,6 @@ namespace C_SHOP.Controllers
             _context.tbl_cart.Update(cart);
             _context.SaveChanges();
             return RedirectToAction("FetchCart");
-        }
+        }    
     }
 }

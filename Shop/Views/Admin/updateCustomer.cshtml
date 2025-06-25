@@ -7,14 +7,18 @@
     <div class="col-md-8">
     <form method="post" enctype="multipart/form-data">
         <input type="hidden" value="@Model.customer_id" name="customer_id" />
-        <input type="text" value="@Model.customer_name" name="customer_name" class="form-control my-3"/>
-        <input type="text" value="@Model.customer_phone" name="customer_phone" class="form-control my-3" />
-        <input type="text" value="@Model.customer_email" name="customer_email" class="form-control my-3" />
-        <input type="text" value="@Model.customer_password" name="customer_password" class="form-control my-3" />
-        <input type="text" value="@Model.customer_gender" name="customer_gender" class="form-control my-3" />
-        <input type="text" value="@Model.customer_country" name="customer_country" class="form-control my-3" />
-        <input type="text" value="@Model.customer_city" name="customer_city" class="form-control my-3" />
-        <input type="text" value="@Model.customer_address" name="customer_address" class="form-control my-3"  />
+        <input type="text" placeholder="Enter customer name" value="@Model.customer_name" name="customer_name" class="form-control my-3"/>
+        <input type="text" placeholder="Enter customer phone" value="@Model.customer_phone" name="customer_phone" class="form-control my-3" />
+        <input type="text" placeholder="Enter customer email" value="@Model.customer_email" name="customer_email" class="form-control my-3" />
+        <input type="text" placeholder="Enter customer password" value="@Model.customer_password" name="customer_password" class="form-control my-3" />
+            <select name="customer_gender" class="form-control mb-3">
+                <option value="Male" selected="@(Model.customer_gender == Gender.Male)">Male</option>
+                <option value="Female" selected="@(Model.customer_gender == Gender.Female)">Female</option>
+                <option value="Unknown" selected="@(Model.customer_gender == Gender.Unknown)">Unknown</option>
+            </select>
+        <input type="text" placeholder="Enter customer country" value="@Model.customer_country" name="customer_country" class="form-control my-3" />
+        <input type="text" placeholder="Enter customer city" value="@Model.customer_city" name="customer_city" class="form-control my-3" />
+        <input type="text" placeholder="Enter customer address" value="@Model.customer_address" name="customer_address" class="form-control my-3"  />
         <input type="hidden" name="customer_image" value="@Model.customer_image" />
         <input type="file" name="customer_image" class="form-control my-3" />
             <input type="submit" value="Update Customer" class="form-control my-3 btn btn-primary" />

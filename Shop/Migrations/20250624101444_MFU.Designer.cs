@@ -3,6 +3,7 @@ using C_SHOP.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace C_SHOP.Migrations
 {
     [DbContext(typeof(myContext))]
-    partial class myContextModelSnapshot : ModelSnapshot
+    [Migration("20250624101444_MFU")]
+    partial class MFU
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -64,23 +67,17 @@ namespace C_SHOP.Migrations
                     b.Property<int>("cust_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("customerscustomer_id")
-                        .HasColumnType("int");
-
                     b.Property<int>("prod_id")
                         .HasColumnType("int");
 
                     b.Property<int>("product_quantity")
                         .HasColumnType("int");
 
-                    b.Property<int>("productsproduct_id")
-                        .HasColumnType("int");
-
                     b.HasKey("cart_id");
 
-                    b.HasIndex("customerscustomer_id");
+                    b.HasIndex("cust_id");
 
-                    b.HasIndex("productsproduct_id");
+                    b.HasIndex("prod_id");
 
                     b.ToTable("tbl_cart");
                 });
@@ -225,13 +222,13 @@ namespace C_SHOP.Migrations
                 {
                     b.HasOne("C_SHOP.Models.Customer", "customers")
                         .WithMany()
-                        .HasForeignKey("customerscustomer_id")
+                        .HasForeignKey("cust_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("C_SHOP.Models.Product", "products")
                         .WithMany()
-                        .HasForeignKey("productsproduct_id")
+                        .HasForeignKey("prod_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

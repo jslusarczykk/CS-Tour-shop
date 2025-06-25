@@ -20,6 +20,10 @@ namespace C_SHOP.Models
                 .HasOne(p=>p.Category)
                 .WithMany(c=>c.Product)
                 .HasForeignKey(p => p.cat_id);
+            modelBuilder.Entity<Customer>()
+                .Property(c => c.customer_gender)
+                .HasConversion<string>();
         }
+
     }
 }

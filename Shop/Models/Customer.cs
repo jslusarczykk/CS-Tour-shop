@@ -2,6 +2,12 @@
 
 namespace C_SHOP.Models
 {
+    public enum Gender
+    {
+        Male,
+        Female,
+        Unknown
+    }
     public class Customer
     {
         [Key]
@@ -10,7 +16,7 @@ namespace C_SHOP.Models
         public string? customer_phone { get; set; }
         public string customer_email { get; set; }
         public string customer_password { get; set; }
-        public string? customer_gender { get; set; }
+        public Gender? customer_gender { get; set; } = Gender.Unknown;
         public string? customer_country { get; set; }
         public string? customer_city { get; set; }
         public string? customer_address { get; set; }

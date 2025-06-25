@@ -29,7 +29,7 @@
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                     <li><a class="dropdown-item" href="@Url.Action("Profile","Admin")">Profile</a></li>
                     <li><hr class="dropdown-divider" /></li>
-                    <li><a class="dropdown-item" href="@Url.Action("logout","admin")">Logout</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("logout","Admin")">Logout</a></li>
                 </ul>
             </li>
         </ul>
@@ -63,7 +63,7 @@
                             <div class="sb-nav-link-icon"><i class="fas fa-shopping-cart"></i></div>
                             Cart
                         </a>
-                        <a class="nav-link" href="index.html">
+                        <a class="nav-link" href="@Url.Action("fetchCart","Admin")">
                             <div class="sb-nav-link-icon"><i class="fas fa-money-check"></i></div>
                             Orders
                         </a>
