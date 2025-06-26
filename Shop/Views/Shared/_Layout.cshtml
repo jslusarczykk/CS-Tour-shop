@@ -133,13 +133,13 @@
                                         <a href="@Url.Action("Index","customer")" class="sf-with-ul">Home</a>
                                     </li>
                                     <li>
-                                        <a href="category.html" class="sf-with-ul">About Us</a>
+                                        <a href="@Url.Action("aboutUs","customer")" class="sf-with-ul">About Us</a>
                                     </li>
                                     <li>
                                         <a href="@Url.Action("fetchAllProducts", "Customer")"class="sf-with-ul">Product</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="sf-with-ul">Category</a>
+                                        <a href="@Url.Action("fetchAllProducts", "Customer")" class="sf-with-ul">Category</a>
                                         <ul>
                                             @Html.Partial("fetchCategoryList", ViewData["category"])
                                         </ul>

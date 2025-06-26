@@ -161,5 +161,11 @@ namespace C_SHOP.Controllers
             _context.SaveChanges();
             return RedirectToAction("fetchCart");
         }
+        public IActionResult aboutUs()
+        {
+            List<Category> category = _context.tbl_category.ToList();
+            ViewData["category"] = category;
+            return View();
+        }
     }
 }
