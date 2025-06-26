@@ -169,56 +169,50 @@
 
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-sm-6 col-md-4">
-                <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
-                    <a href="#">
-                        <img src="~/customer_index/litovel_fireworks.gif" alt="Banner">
-                    </a>
-                    <div class="banner-content">
-                        <h4 class="banner-subtitle">Weekend Offer</h4>
-                        <img class="banner-title-img" style="margin-right: 500px;"
-                             src="~/customer_index/litovel_text.png" alt="Banner Litovel">
-                        <h4 class="banner-price">
-                            <span class="off" style="font-weight: 600;">
-                                Save <span class="price">4.99zł</span>
-                            </span>
-                        </h4>
-                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
-                    </div>
-                </div><!-- End .banner -->
-            </div><!-- End .col-md-4 -->
 
-            <div class="col-sm-6 col-md-4">
-                <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
-                    <a href="#">
-                        <img src="~/customer_index/soplica_fireworks_visible.gif" alt="konsola">
-                    </a>
-                    <div class="banner-content">
-                        <h4 class="banner-subtitle" style="letter-spacing: 0.1em;">Amazing Deal on a</h4>
-                        <h2 class="banner-title mb-0" style="font-size: 3rem;">Soplica Wiśniowa</h2>
-                        <h4 class="banner-price">
-                            <span class="off" style="font-weight: 600;">Save 10zł</span>
-                        </h4>
-                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+            <!-- ONE PRODUCT CARD TEMPLATE -->
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="text-center border rounded shadow-sm overflow-hidden" style="background: #f8f9fa;">
+                    <img src="~/customer_index/litovel_fireworks.gif" alt="Soplica" class="img-fluid">
+                    <div class="p-3 bg-dark text-white">
+                        <h6 class="text-warning mb-1">Weekend Offer</h6>
+                        <h4 class="text-danger mb-1">Litovel</h4>
+                        <p class="mb-2"><strong>Only <span class="text-warning">4.99zł</span></strong></p>
+                        <a href="@Url.Action("fetchAllProducts","Customer")" class="btn btn-warning text-dark fw-bold">Buy Now →</a>
                     </div>
-                </div><!-- End .banner -->
-            </div><!-- End .col-md-4 -->
+                </div>
+            </div>
 
-            <div class="col-sm-6 col-md-4">
-                <div class="banner banner-overlay banner-sm banner-ad content-left align-center">
-                    <a href="#">
-                        <img src="~/customer_index/jack_daniels_fireworks.gif" alt="Banner">
-                    </a>
-                    <div class="banner-content">
-                        <h4 class="banner-price text-white mb-1">Save 29.00zł</h4>
-                        <img class="banner-title-img mb-2"
-                             src="~/customer_index/whiskey_napis.png" alt="Whiskey napis">
-                        <a href="#" class="banner-link">Buy Now<i class="icon-long-arrow-right"></i></a>
+            <!-- SOPLICA -->
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="text-center border rounded shadow-sm overflow-hidden" style="background: #f8f9fa;">
+                    <img src="~/customer_index/soplica_fireworks_visible.gif" alt="Soplica" class="img-fluid">
+                    <div class="p-3 bg-dark text-white">
+                        <h6 class="text-warning mb-1">Amazing Deal on a</h6>
+                        <h4 class="text-danger mb-1">Soplica Wiśniowa</h4>
+                        <p class="mb-2"><strong>Save <span class="text-warning">10zł</span></strong></p>
+                        <a href="@Url.Action("fetchAllProducts","Customer")" class="btn btn-warning text-dark fw-bold">Buy Now →</a>
                     </div>
-                </div><!-- End .banner -->
-            </div><!-- End .col-md-4 -->
-        </div><!-- End .row -->
-    </div><!-- End .container -->
+                </div>
+            </div>
+
+            <!-- JACK DANIELS -->
+            <div class="col-sm-6 col-md-4 mb-4">
+                <div class="text-center border rounded shadow-sm overflow-hidden" style="background: #f8f9fa;">
+                    <img src="~/customer_index/jack_daniels_fireworks.gif" alt="Jack Daniels" class="img-fluid">
+                    <div class="p-3 bg-dark text-white">
+                        <h6 class="text-warning mb-1">One time promo</h6>
+                        <h4 class="text-danger mb-1">Jack Daniels 0.5l</h4>
+                        <p class="mb-2"><strong>Just <span class="text-danger mb-1">59.99zł!!!</span></strong></p>
+                        <a href="@Url.Action("fetchAllProducts","Customer")" class="btn btn-warning text-dark fw-bold">Buy Now →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- .row -->
+    </div> <!-- .container -->
+
+
 
     <div class="container">
         <hr class="mt-0 mb-4">
