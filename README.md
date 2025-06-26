@@ -1,0 +1,2 @@
+An alcohol-based E-commerce store with fully functional Products, Categories, Profiles and Cart. There is a division between Customer and Admin. They have their seperate views. An admin can update their profile, add/delete new Categories,
+Add, Update and Delete Products, Customers and Carts. There is also an option to view Feedback from Customers. A customer can add Products to carts, and has access to log in view as well, can Update their profile and also send Feedback.
